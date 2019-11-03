@@ -3,5 +3,10 @@ button{
     height: 50px;
     color: black;
     margin-top: 
-    border: 100px rgb(136, 199, 136);
+    border:  75px rgb(136, 199, 136);
+   
+}
+
+#searchContainer{
+    float: right;
 }
