@@ -15,7 +15,7 @@ $(document).ready(function () {
             console.log(response.data);
             for (var i = 0; i < response.data.length; i++) {
                 console.log(response.data[i].url);
-                var imageUrl = (response.data[i].images.fixed_width_small_still.url);
+                var imageUrl = (response.data[i].images.original.url);
                 console.log(imageUrl)
                 var createImg = $("<img>");
                 createImg.attr("data-name");
@@ -23,10 +23,28 @@ $(document).ready(function () {
                 $("#displayGif").append(createImg);
                 console.log(response.data[i].url);
                 console.log(response);
+                
+//Replace the animation state on the gif
+                $("img").on("click", function dataState() {
+                    console.log("this has been clicked");
+                
+                    // var fixed = (response.data[i].images.fixed_height_still.url);
+                    // var animated = (response.data[i].images.fixed_height.url);
+                    var state = $(this).attr("data-state");
+                    if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-animate"));
+                        $(this).attr("data-state", "animate");
+                    } else {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    }
+                
+                });
+
                 // $("#displayGif").append(response.data.images.fixed_height_small_still.url);
             }
         })
-    }
+    } //adding our buttons from the search of user
     function renderButtons() {
         $("#displayGif").empty();
         for (var i = 0; i < characters.length; i++) {
@@ -46,5 +64,6 @@ $(document).ready(function () {
         renderButtons();
     })
     $(document).on("click", ".character", displayGif);
+    // $(document).on("click", "img", dataState);
     renderButtons();
-})
+});
